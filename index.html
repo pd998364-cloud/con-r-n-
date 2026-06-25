@@ -2,26 +2,75 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Game Rắn Săn Mồi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chiến Binh Sinh Tồn</title>
     <style>
         body {
             margin: 0;
-            background-color: #111217;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+        canvas {
+            background-color: #0f172a;
+            border: 4px solid #38bdf8;
+            max-width: 100%;
+            max-height: 60vh;
+            box-sizing: border-box;
+        }
+        /* Khu vực nút bấm trên điện thoại */
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 70px);
+            grid-template-rows: repeat(3, 70px);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn {
+            background-color: #1e293b;
+            border: 2px solid #38bdf8;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            user-select: none;
+            touch-action: manipulation;
+            cursor: pointer;
         }
-        canvas {
-            background-color: #1a1a24;
-            border: 4px solid #2ed573; /* Viền màu xanh neon cực đẹp */
-            box-shadow: 0 0 20px rgba(46, 213, 115, 0.4);
+        .btn:active {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+        .up { grid-column: 2; grid-row: 1; }
+        .left { grid-column: 1; grid-row: 2; }
+        .right { grid-column: 3; grid-row: 2; }
+        .down { grid-column: 2; grid-row: 3; }
+        
+        /* Ẩn nút trên máy tính, chỉ hiện trên màn hình nhỏ/điện thoại */
+        @media (min-width: 768px) {
+            .controls { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="gameCanvas" width="600" height="600"></canvas>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+    <div class="controls">
+        <div class="btn up" id="btnUp">▲</div>
+        <div class="btn left" id="btnLeft">◀</div>
+        <div class="btn right" id="btnRight">▶</div>
+        <div class="btn down" id="btnDown">▼</div>
+    </div>
 
     <script src="game.js"></script>
 </body>
